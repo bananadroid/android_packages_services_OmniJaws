@@ -129,7 +129,7 @@ public class SettingsActivityService extends PreferenceActivity implements OnPre
         mUpdateInterval.setSummary(mUpdateInterval.getEntries()[idx]);
 
         mLocation = (CustomLocationPreference) findPreference(PREF_KEY_CUSTOM_LOCATION_CITY);
-        if (mPrefs.getBoolean(Config.PREF_KEY_ENABLE, false)
+        if (mPrefs.getBoolean(Config.PREF_KEY_ENABLE, true)
                 && !mPrefs.getBoolean(Config.PREF_KEY_CUSTOM_LOCATION, false)) {
             mTriggerUpdate = false;
             checkLocationEnabled();
