@@ -25,6 +25,7 @@ LOCAL_SRC_FILES := $(call all-subdir-java-files)
 LOCAL_PACKAGE_NAME := OmniJaws
 LOCAL_MODULE_TAGS := optional
 LOCAL_SDK_VERSION := system_current
+LOCAL_REQUIRED_MODULES := privapp_whitelist_org.omnirom.omnijaws-ext.xml
 #LOCAL_DEX_PREOPT := false
 include $(BUILD_PACKAGE)
 
@@ -50,4 +51,12 @@ LOCAL_MODULE := prebuilt-okio
 LOCAL_SRC_FILES := libs/okio-1.14.0.jar
 LOCAL_UNINSTALLABLE_MODULE := true
 LOCAL_SDK_VERSION := current
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := privapp_whitelist_org.omnirom.omnijaws-ext.xml
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)/permissions
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
 include $(BUILD_PREBUILT)
