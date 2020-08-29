@@ -29,7 +29,7 @@
             android:exported="true"
             android:label="@string/settings_title"
             android:launchMode="singleTop"
-            android:theme="@style/OmniJawsTheme" >
+            android:theme="@android:style/Theme.DeviceDefault.Settings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -41,7 +41,7 @@
             android:exported="true"
             android:label="@string/settings_title"
             android:launchMode="singleTop"
-            android:theme="@style/OmniJawsTheme" >
+            android:theme="@android:style/Theme.DeviceDefault.Settings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -99,7 +99,7 @@
 
         <activity
             android:name=".widget.WeatherAppWidgetConfigure"
-            android:theme="@style/OmniJawsTheme">
+            android:theme="@android:style/Theme.DeviceDefault.Settings">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
