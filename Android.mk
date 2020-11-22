@@ -17,6 +17,9 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
+LOCAL_STATIC_JAVA_LIBRARIES := prebuilt-jsoup \
+	prebuilt-okhttp \
+	prebuilt-okio
 LOCAL_JAVA_LIBRARIES := org.apache.http.legacy
 LOCAL_SRC_FILES := $(call all-subdir-java-files)
 LOCAL_PACKAGE_NAME := OmniJaws
@@ -24,3 +27,27 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SDK_VERSION := system_current
 #LOCAL_DEX_PREOPT := false
 include $(BUILD_PACKAGE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE := prebuilt-jsoup
+LOCAL_SRC_FILES := libs/jsoup-1.11.3.jar
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE := prebuilt-okhttp
+LOCAL_SRC_FILES := libs/okhttp-3.11.0.jar
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_MODULE := prebuilt-okio
+LOCAL_SRC_FILES := libs/okio-1.14.0.jar
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
+include $(BUILD_PREBUILT)
