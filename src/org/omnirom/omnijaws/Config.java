@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
+import org.omnirom.omnijaws.R;
 
 public class Config {
     public static final String PREF_KEY_PROVIDER = "provider";
@@ -39,23 +40,22 @@ public class Config {
     public static final String PREF_KEY_OWM_KEY = "owm_key";
 
     public static AbstractWeatherProvider getProvider(Context context) {
-        return new OpenWeatherMapProvider(context);
-        /*SharedPreferences prefs = PreferenceManager
+        SharedPreferences prefs = PreferenceManager
                 .getDefaultSharedPreferences(context);
 
         if (prefs.getString(PREF_KEY_PROVIDER, "0").equals("1")) {
-            return new OpenWeatherMapProvider(context);
+            return new WeatherClientProvider(context);
         }
-        return new YahooWeatherProvider(context);*/
+        return new OpenWeatherMapProvider(context);
     }
 
     public static String getProviderId(Context context) {
-        return "OpenWeatherMap";
-        /*SharedPreferences prefs = PreferenceManager
+        SharedPreferences prefs = PreferenceManager
                 .getDefaultSharedPreferences(context);
 
         String provider = prefs.getString(PREF_KEY_PROVIDER, "0");
-        return provider.equals("1") ? "OpenWeatherMap" : "Yahoo";*/
+        return provider.equals("1") ? context.getResources().
+                getString(R.string.weather_widget) : "OpenWeatherMap";
     }
 
     public static boolean isMetric(Context context) {
