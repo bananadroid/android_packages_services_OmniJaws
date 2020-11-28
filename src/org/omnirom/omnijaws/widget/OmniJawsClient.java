@@ -116,6 +116,8 @@ public class OmniJawsClient {
     private String mSettingIconPackage;
     private boolean mMetric;
 
+    private boolean mMonochromeIconPack = false;
+
     public OmniJawsClient(Context context) {
         mContext = context;
         loadDefaultIconsPackage();
@@ -211,6 +213,9 @@ public class OmniJawsClient {
         try {
             PackageManager packageManager = mContext.getPackageManager();
             mRes = packageManager.getResourcesForApplication(mPackageName);
+            if (mIconPrefix.contains("outline")) {
+                mMonochromeIconPack = true;
+            }
         } catch (Exception e) {
             mRes = null;
         }
@@ -228,6 +233,9 @@ public class OmniJawsClient {
         try {
             PackageManager packageManager = mContext.getPackageManager();
             mRes = packageManager.getResourcesForApplication(mPackageName);
+            if (mIconPrefix.contains("outline")) {
+                mMonochromeIconPack = true;
+            }
         } catch (Exception e) {
             mRes = null;
         }
@@ -316,6 +324,10 @@ public class OmniJawsClient {
 
     private String getWindUnit() {
         return mMetric ? "km/h":"mph";
+    }
+
+    public boolean isMonochromeIcon() {
+        return mMonochromeIconPack;
     }
 
     private boolean isAvailableApp(String packageName) {

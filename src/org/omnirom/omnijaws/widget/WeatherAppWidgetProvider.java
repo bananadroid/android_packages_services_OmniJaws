@@ -261,7 +261,7 @@ public class WeatherAppWidgetProvider extends AppWidgetProvider {
 
         Drawable d = weatherClient.getWeatherConditionImage(weatherData.forecasts.get(0).conditionCode);
         BitmapDrawable bd = overlay(context.getResources(), d, weatherData.forecasts.get(0).low, weatherData.forecasts.get(0).high,
-                weatherData.tempUnits);
+                weatherData.tempUnits, weatherClient.isMonochromeIcon());
         widget.setImageViewBitmap(R.id.forecast_image_0, bd.getBitmap());
         widget.setTextViewText(R.id.forecast_text_0, dayShort);
         widget.setViewVisibility(R.id.forecast_text_0, showDays ? View.VISIBLE : View.GONE);
@@ -272,7 +272,7 @@ public class WeatherAppWidgetProvider extends AppWidgetProvider {
 
         d = weatherClient.getWeatherConditionImage(weatherData.forecasts.get(1).conditionCode);
         bd = overlay(context.getResources(), d, weatherData.forecasts.get(1).low, weatherData.forecasts.get(1).high,
-                weatherData.tempUnits);
+                weatherData.tempUnits, weatherClient.isMonochromeIcon());
         widget.setImageViewBitmap(R.id.forecast_image_1, bd.getBitmap());
         widget.setTextViewText(R.id.forecast_text_1, dayShort);
         widget.setViewVisibility(R.id.forecast_text_1, showDays ? View.VISIBLE : View.GONE);
@@ -283,7 +283,7 @@ public class WeatherAppWidgetProvider extends AppWidgetProvider {
 
         d = weatherClient.getWeatherConditionImage(weatherData.forecasts.get(2).conditionCode);
         bd = overlay(context.getResources(), d, weatherData.forecasts.get(2).low, weatherData.forecasts.get(2).high,
-                weatherData.tempUnits);
+                weatherData.tempUnits, weatherClient.isMonochromeIcon());
         widget.setImageViewBitmap(R.id.forecast_image_2, bd.getBitmap());
         widget.setTextViewText(R.id.forecast_text_2, dayShort);
         widget.setViewVisibility(R.id.forecast_text_2, showDays ? View.VISIBLE : View.GONE);
@@ -294,7 +294,7 @@ public class WeatherAppWidgetProvider extends AppWidgetProvider {
 
         d = weatherClient.getWeatherConditionImage(weatherData.forecasts.get(3).conditionCode);
         bd = overlay(context.getResources(), d, weatherData.forecasts.get(3).low, weatherData.forecasts.get(3).high,
-                weatherData.tempUnits);
+                weatherData.tempUnits, weatherClient.isMonochromeIcon());
         widget.setImageViewBitmap(R.id.forecast_image_3, bd.getBitmap());
         widget.setTextViewText(R.id.forecast_text_3, dayShort);
         widget.setViewVisibility(R.id.forecast_text_3, showDays ? View.VISIBLE : View.GONE);
@@ -305,14 +305,14 @@ public class WeatherAppWidgetProvider extends AppWidgetProvider {
 
         d = weatherClient.getWeatherConditionImage(weatherData.forecasts.get(4).conditionCode);
         bd = overlay(context.getResources(), d, weatherData.forecasts.get(4).low, weatherData.forecasts.get(4).high,
-                weatherData.tempUnits);
+                weatherData.tempUnits, weatherClient.isMonochromeIcon());
         widget.setImageViewBitmap(R.id.forecast_image_4, bd.getBitmap());
         widget.setTextViewText(R.id.forecast_text_4, dayShort);
         widget.setViewVisibility(R.id.forecast_text_4, showDays ? View.VISIBLE : View.GONE);
         widget.setViewVisibility(R.id.forecast_4, withForcast ? View.VISIBLE : View.GONE);
 
         d = weatherClient.getWeatherConditionImage(weatherData.conditionCode);
-        bd = overlay(context.getResources(), d, weatherData.temp, null, weatherData.tempUnits);
+        bd = overlay(context.getResources(), d, weatherData.temp, null, weatherData.tempUnits, weatherClient.isMonochromeIcon());
         widget.setImageViewBitmap(R.id.current_image, bd.getBitmap());
         widget.setTextViewText(R.id.current_text, context.getResources().getText(R.string.omnijaws_current_text));
         widget.setViewVisibility(R.id.current_text, showDays ? View.VISIBLE : View.GONE);
@@ -376,8 +376,8 @@ public class WeatherAppWidgetProvider extends AppWidgetProvider {
         widget.setViewVisibility(R.id.refresh, View.VISIBLE);
     }
 
-    private static BitmapDrawable overlay(Resources resources, Drawable image, String min, String max, String tempUnits) {
-        if (image instanceof VectorDrawable) {
+    private static BitmapDrawable overlay(Resources resources, Drawable image, String min, String max, String tempUnits, boolean isMonochrome) {
+        if (image instanceof VectorDrawable && isMonochrome) {
             image = applyTint(image);
         }
         final Canvas canvas = new Canvas();

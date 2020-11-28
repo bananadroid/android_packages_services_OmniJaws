@@ -111,6 +111,8 @@ public class OmniJawsClient {
     private boolean mEnabled;
     private boolean mMetric;
 
+    private boolean mMonochromeIconPack = false;
+
     public OmniJawsClient(Context context) {
         mContext = context;
         mEnabled = isOmniJawsServiceInstalled();
@@ -156,6 +158,14 @@ public class OmniJawsClient {
             formatted = "0";
         }
         return formatted;
+    }
+
+    public boolean isMonochromeIcon() {
+    	return mMonochromeIconPack;
+    }
+
+    public void setMonochromeIcon(boolean isMono) {
+    	mMonochromeIconPack = isMono;
     }
 
     public void queryWeather() {
