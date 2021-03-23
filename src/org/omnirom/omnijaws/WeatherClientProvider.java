@@ -154,8 +154,11 @@ public class WeatherClientProvider extends AbstractWeatherProvider {
                 String localizedCityName = docForecast.selectFirst("span[class*=LocationText] span").text().split(",")[0];
                 String localizedPhrase = doc.selectFirst("div[class*=phraseValue]").text();
 
-                float windSpeed = Float.parseFloat(
-                            doc.selectFirst("div[class*=DetailsList] span[data-testid=Wind]").text().split(" ")[0]);
+                String[] windData = doc.selectFirst("div[class*=DetailsList] span[data-testid=Wind]").text().split(" ");
+
+                // Mostly the wind speed float is the previous to last on the list. the last item is the measure, which jaws
+                // add automatically
+                float windSpeed = Float.parseFloat(windData[windData.length - 2]);
 
                 // NOTE: DOING THIS WORKAROUND BECAUSE THE WEATHER PROVIDER STARTS IN A 180 DEGREE
                 String windirRotate = doc.selectFirst("div[class*=DetailsList] svg[style]").attr("style").split(":")[1];
